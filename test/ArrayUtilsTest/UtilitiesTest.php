@@ -8,9 +8,9 @@ class UtilitiesTest extends \PHPUnit_Framework_TestCase
 {
     public function filterArrays()
     {
-        return [
-            [
-                ['foo' => 'bar', 'fiz' => 'buz'],
+        return array(
+            array(
+                array('foo' => 'bar', 'fiz' => 'buz'),
                 function ($value) {
                     if ($value == 'bar') {
                         return false;
@@ -18,10 +18,10 @@ class UtilitiesTest extends \PHPUnit_Framework_TestCase
                     return true;
                 },
                 null,
-                ['fiz' => 'buz']
-            ],
-            [
-                ['foo' => 'bar', 'fiz' => 'buz'],
+                array('fiz' => 'buz')
+            ),
+            array(
+                array('foo' => 'bar', 'fiz' => 'buz'),
                 function ($value, $key) {
                     if ($value == 'buz') {
                         return false;
@@ -32,10 +32,10 @@ class UtilitiesTest extends \PHPUnit_Framework_TestCase
                     return true;
                 },
                 Utilities::ARRAY_FILTER_USE_BOTH,
-                []
-            ],
-            [
-                ['foo' => 'bar', 'fiz' => 'buz'],
+                array()
+            ),
+            array(
+                array('foo' => 'bar', 'fiz' => 'buz'),
                 function ($key) {
                     if ($key == 'foo') {
                         return false;
@@ -43,9 +43,9 @@ class UtilitiesTest extends \PHPUnit_Framework_TestCase
                     return true;
                 },
                 Utilities::ARRAY_FILTER_USE_KEY,
-                ['fiz' => 'buz']
-            ],
-        ];
+                array('fiz' => 'buz')
+            ),
+        );
     }
     /**
      * @dataProvider filterArrays
@@ -59,6 +59,6 @@ class UtilitiesTest extends \PHPUnit_Framework_TestCase
      */
     public function testInvalidCallableRaiseInvalidArgumentException()
     {
-        Utilities::filter([], "INVALID");
+        Utilities::filter(array(), "INVALID");
     }
 }
