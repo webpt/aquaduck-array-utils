@@ -4,7 +4,7 @@ namespace Webpt\Aquaduck\ArrayUtils;
 
 abstract class AbstractArrayMappingMiddleware extends AbstractArrayMiddleware
 {
-    protected function execute(array $subject)
+    protected function executeArray(array $subject)
     {
         return array_map(array($this, 'mapValue'), $subject);
     }

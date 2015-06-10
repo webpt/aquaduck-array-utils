@@ -3,33 +3,10 @@
 namespace Webpt\Aquaduck\ArrayUtils;
 
 use Webpt\Aquaduck\ArrayUtils\Exception\InvalidArgumentException;
-use Webpt\Aquaduck\MiddlewareInterface;
+use Webpt\Aquaduck\Middleware\AbstractMiddleware;
 
-abstract class AbstractArrayMiddleware implements MiddlewareInterface
+abstract class AbstractArrayMiddleware extends AbstractMiddleware
 {
-    const ORDER_PREPEND = 'prepend';
-    const ORDER_APPEND  = 'append';
-
-    protected $order = 'append';
-
-    /**
-     * @return string
-     */
-    public function getOrder()
-    {
-        return $this->order;
-    }
-
-    public function isPrepend()
-    {
-        return ($this->getOrder() === static::ORDER_PREPEND);
-    }
-
-    public function isAppend()
-    {
-        return ($this->getOrder() === static::ORDER_APPEND);
-    }
-
     public function __invoke($subject, $next = null)
     {
         if (!is_array($subject)) {
@@ -38,24 +15,13 @@ abstract class AbstractArrayMiddleware implements MiddlewareInterface
             );
         }
 
-        if ($next && !is_callable($next)) {
-            throw new InvalidArgumentException(
-                sprintf('Second parameter must be a valid callback or null; received "%s"', gettype($next))
-            );
-        }
-
-        if ($this->isPrepend() && $next) {
-            $subject = $next($subject);
-        }
-
-        $transformed = $this->execute($subject);
-
-        if ($this->isAppend() && $next) {
-            return $next($transformed);
-        }
-
-        return $transformed;
+        return parent::__invoke($subject, $next);
     }
 
-    abstract protected function execute(array $subject);
+    protected function execute($subject)
+    {
+        return $this->executeArray($subject);
+    }
+
+    abstract protected function executeArray(array $subject);
 }

@@ -14,7 +14,7 @@ abstract class AbstractArrayFilteringMiddleware extends AbstractArrayMiddleware
         return $this->flag;
     }
 
-    protected function execute(array $subject)
+    protected function executeArray(array $subject)
     {
         return Utilities::filter($subject, array($this, 'filterValue'), $this->getFlag());
     }
