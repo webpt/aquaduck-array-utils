@@ -2,9 +2,6 @@
 
 namespace Webpt\Aquaduck\ArrayUtilsTest;
 
-use Webpt\Aquaduck\ArrayUtils\AbstractArrayMiddleware;
-use Webpt\Aquaduck\Middleware\AbstractMiddleware;
-
 class AbstractArrayMiddlewareTest extends \PHPUnit_Framework_TestCase
 {
     protected $middleware;
