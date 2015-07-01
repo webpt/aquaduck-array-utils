@@ -1,5 +1,6 @@
 {
     "name": "webpt/aquaduck-array-utils",
+    "license": "BSD-3-Clause",
     "authors": [
         {
             "name": "Tim Klever",
@@ -11,14 +12,8 @@
             "Webpt\\Aquaduck\\ArrayUtils\\": "src/ArrayUtils/"
         }
     },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/webpt/aquaduck.git"
-        }
-    ],
     "require": {
-        "webpt/aquaduck": "^1.0@dev"
+        "webpt/aquaduck": "0.1"
     },
     "require-dev": {
         "phpunit/phpunit": "^4.0"
